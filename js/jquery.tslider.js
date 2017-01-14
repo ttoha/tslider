@@ -1,66 +1,86 @@
 (function($){
     $.fn.tslider = function(options){
         var defaults = {
-
+            slide_name: true,   // false - отключит название слайдов на стрелках прокрутки
+            autoplay: 3000,     // интервал между прокруткой слайда 0 или false - отключит авто прокрутку
+            speed: 500          // скорость прокрутки
         }
 
         var settings = $.extend(defaults, options);
 
-        var slide_width = $(this).find('.slider-wrap').outerWidth();
-        var slider_width = $(this).find('.slider .slide').length * slide_width;
-        $(this).find('.slider').css({"width": + slider_width + "px"});
-        $(this).find('.slider .slide').css({"width": + slide_width + "px"});
+        var ts = this;
+
+        var slide_width = ts.find('.slider-wrap').outerWidth();
+        var slider_width = ts.find('.slider .slide').length * slide_width;
+        ts.find('.slider').css({"width": + slider_width + "px"});
+        ts.find('.slider .slide').css({"width": + slide_width + "px"});
 
 
-        var left_text = $(this).find(".slider .slide").last().find(".slide-name").text();
-        var right_text = $(this).find(".slider .slide").eq(1).find(".slide-name").text();
-        $(this).find(".slider-left_arrow").html(left_text);
-        $(this).find(".slider-right_arrow").html(right_text);
+        function slide_name(){
+            if (settings.slide_name == true){
+                var left_text = $(ts).find(".slider .slide").last().find(".slide-name").text();
+                var right_text = $(ts).find(".slider .slide").eq(1).find(".slide-name").text();
+                ts.find(".slider-left_arrow").html(left_text);
+                ts.find(".slider-right_arrow").html(right_text);
+            }
+        }
 
+        slide_name();
 
         $(window).resize(function() {
-            var slide_width = $(this).find('.slider-wrap').outerWidth();
-            var slider_width = $(this).find('.slider .slide').length * slide_width;
-            $(this).find('.slider').css({"width": + slider_width + "px"});
-            $(this).find('.slider .slide').css({"width": + slide_width + "px"});
-        });
-
-        $(".slider-right_arrow").on('click', function(){
-            var carusel = $(this).parents(this);
-            right_carusel(carusel);
-            return false;
+            var slide_width = ts.find('.slider-wrap').outerWidth();
+            var slider_width = ts.find('.slider .slide').length * slide_width;
+            ts.find('.slider').css({"width": + slider_width + "px"});
+            ts.find('.slider .slide').css({"width": + slide_width + "px"});
         });
 
         $(".slider-left_arrow").on('click', function(){
-            var carusel = $(this).parents(this);
-            left_carusel(carusel);
+            slider_left();
+            return false;
+        });
+        $(".slider-right_arrow").on('click', function(){
+            slider_right();
             return false;
         });
 
-        function left_carusel(carusel){
-            $(carusel).find(".slider .slide").eq(-1).clone().prependTo($(carusel).find(".slider"));
-            $(carusel).find(".slider").css({"left":"-" + slide_width + "px"});
-            $(carusel).find(".slider .slide").eq(-1).remove();
-            $(carusel).find(".slider").animate({left: "0px"}, 200);
 
-            var left_text = $(carusel).find(".slider .slide").last().find(".slide-name").text();
-            var right_text = $(carusel).find(".slider .slide").eq(1).find(".slide-name").text();
-            $(carusel).find(".slider-left_arrow").html(left_text);
-            $(carusel).find(".slider-right_arrow").html(right_text);
+        function slider_left(){
+            $(ts).find(".slider .slide").eq(-1).clone().prependTo($(ts).find(".slider"));
+            $(ts).find(".slider").css({"left":"-" + slide_width + "px"});
+            $(ts).find(".slider .slide").eq(-1).remove();
+            $(ts).find(".slider").animate({left: "0px"}, settings.speed);
+
+            slide_name();
         }
 
-        function right_carusel(carusel){
-            $(carusel).find(".slider").animate({left:"-" + slide_width + "px"}, 200, function(){
-                $(carusel).find(".slider .slide").eq(0).clone().appendTo($(carusel).find(".slider"));
-                $(carusel).find(".slider .slide").eq(0).remove();
-                $(carusel).find(".slider").css({"left":"0"});
+        function slider_right(){
+            $(ts).find(".slider").animate({left:"-" + slide_width + "px"}, settings.speed, function(){
+                $(ts).find(".slider .slide").eq(0).clone().appendTo($(ts).find(".slider"));
+                $(ts).find(".slider .slide").eq(0).remove();
+                $(ts).find(".slider").css({"left":"0"});
 
-                var left_text = $(carusel).find(".slider .slide").last().find(".slide-name").text();
-                var right_text = $(carusel).find(".slider .slide").eq(1).find(".slide-name").text();
-                $(carusel).find(".slider-left_arrow").html(left_text);
-                $(carusel).find(".slider-right_arrow").html(right_text);
+                slide_name();
             });
         }
+
+        if (settings.autoplay !== 0){
+            auto_play(ts);
+        }
+
+        function auto_play(){
+            setInterval(function(){
+                if (!$(ts).is('.stop'))
+                    slider_right();
+            }, settings.autoplay)
+        }
+
+        $(ts).mouseenter(function(){
+            $(this).addClass('stop');
+        })
+
+        $(ts).mouseleave(function(){
+            $(this).removeClass('stop')
+        })
     }
 
 })(jQuery);
