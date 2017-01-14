@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="js/jquery.tslider.js"></script>
+</head>
+<body>
+    <script>
+
+    </script>
+    <style>
+        .container:after, .container:before,
+        .slider-container:after, .slider-container:before {
+            content:" ";
+            display:table;
+        }
+        .container:after, .slider-container:after {
+            clear:both;
+        }
+
+        .container {
+            margin:0 auto;
+        }
+
+        @media (min-width:768px) {
+            .container {
+                width:750px;
+            }
+        }
+        @media (min-width:992px) {
+            .container {
+                width:970px;
+            }
+        }
+        @media (min-width:1200px) {
+            .container {
+                width:1170px;
+            }
+        }
+
+        .tslider {
+            width:100%;
+            position:relative;
+        }
+        .slider-left_arrow, slider-right_arrow {
+            float:left;
+            width:15%;
+        }
+        .slider-right_arrow {
+            text-align:right;
+        }
+        .slider-wrap {
+            overflow:hidden;
+            position:relative;
+            float:left;
+            width:70%;
+        }
+        .slider {
+            float:left;
+            position:relative;
+        }
+        .slide {
+            float:left;
+        }
+    </style>
+    <div class="container">
+        <div class="tslider">
+            <div class="slider-left_arrow">
+                <div class="arrow">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="text">Название предыдущего раздела</div>
+            </div>
+            <div class="slider-wrap">
+                <div class="slider">
+                    <div class="slide">
+                       <div class="slide-name">Name 1</div>
+                       <div class="slide-content">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum aliquam minus nisi perspiciatis, alias omnis repellat tempore sit soluta nulla nam nobis, numquam expedita! Nesciunt, aliquid minima veritatis excepturi accusamus!
+                       </div>
+                    </div>
+                    <div class="slide">
+                       <div class="slide-name">Name 2</div>
+                       <div class="slide-content">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam ad dicta ab ut, molestiae laboriosam perferendis provident! Accusantium veritatis maxime natus, sunt placeat impedit inventore porro, repellat quis explicabo quasi.
+                       </div>
+                    </div>
+                    <div class="slide">
+                       <div class="slide-name">Name 3</div>
+                       <div class="slide-content">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum officiis eveniet cumque soluta perferendis, tempore nihil aperiam vitae alias quidem a doloremque, quaerat tenetur, magni iste. Dolores consequatur veniam ipsam!
+                       </div>
+                    </div>
+                    <div class="slide">
+                       <div class="slide-name">Name 4</div>
+                       <div class="slide-content">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum officiis eveniet cumque soluta perferendis, tempore nihil aperiam vitae alias quidem a doloremque, quaerat tenetur, magni iste. Dolores consequatur veniam ipsam!
+                       </div>
+                    </div>
+                    <div class="slide">
+                       <div class="slide-name">Name 5</div>
+                       <div class="slide-content">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum officiis eveniet cumque soluta perferendis, tempore nihil aperiam vitae alias quidem a doloremque, quaerat tenetur, magni iste. Dolores consequatur veniam ipsam!
+                       </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-right_arrow">
+                <div class="arrow">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="text">Название следующего раздела</div>
+            </div>
+        </div>
+    </div>
+        <script>
+        $(function(){
+            $('.tslider').tslider({
+//                overlayColor: 'rgba(152,85,32,0.5)'
+            });
+        })
+    </script>
+</body>
+</html>
