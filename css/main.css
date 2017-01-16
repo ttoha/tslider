@@ -54,7 +54,7 @@ body {margin:0}
 .slider-right_arrow span {
     width:20px; height:20px;
     -ms-transform:rotate(45deg);
-    -webkit-transform rotate(45deg);
+    -webkit-transform: rotate(45deg);
     transform:rotate(45deg);
     border:2px black solid;
 }
@@ -184,6 +184,8 @@ body {margin:0}
         position:absolute;
         top:50%;
         width:15%;
+        -ms-transform:translate(0,-50%);
+        -webkit-transform:translate(0,-50%);;
         transform:translate(0,-50%);
         margin:0;
     }
