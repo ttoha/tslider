@@ -211,3 +211,23 @@ body {margin:0}
         width:1170px;
     }
 }
+
+
+
+.img-slider .slide-inner {
+    display:table;
+    width:100%;
+    position:relative;
+}
+.img-slider .slide-inner img {
+    width:100%; height:auto;
+}
+
+.img-slider .slide-content {
+    position:absolute;
+    left:5px; bottom:10px;
+    background-color:rgba(255,255,255,.5);
+    padding:5px;
+    width:300px;
+    max-width:100%;
+}
